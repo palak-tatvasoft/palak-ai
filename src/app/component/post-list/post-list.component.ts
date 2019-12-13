@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { interval, Subscription } from 'rxjs';
+
 // components
 import { PostDialogComponent } from '../post-dialog/post-dialog.component';
 // services
@@ -15,16 +17,20 @@ import { HitsEntity } from './../../model/post';
   templateUrl: './post-list.component.html',
   styleUrls: ['./post-list.component.scss']
 })
-export class PostListComponent implements OnInit {
+export class PostListComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['title', 'url', 'created_at', 'author'];
   dataSource = new MatTableDataSource();
+  subscription: Subscription;
+
   constructor(private postService: PostService, public dialog: MatDialog) { }
 
   ngOnInit() {
+    const source = interval(10000);
     this.getPostList();
+    this.subscription = source.subscribe(val => this.getPostList());
   }
 
-  openDialog(postData: HitsEntity): void {
+  openDialog = (postData: HitsEntity): void => {
     const dialogRef = this.dialog.open(PostDialogComponent, {
       width: '550px',
       data: postData
@@ -48,5 +54,7 @@ export class PostListComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }
