@@ -1,14 +1,15 @@
 <h1 mat-dialog-title>Post Data</h1>
 <div mat-dialog-content>
-  <p>{{ data | json}}</p>
   <div>
     <p><b>Sample Post Data</b></p>
     <div *ngFor="let item of data | keyvalue">
-      <p *ngIf="item.value">
+      <p *ngIf="item.value && item.key !== '_highlightResult'">
         <b>{{item.key}}:</b> {{ item.value }}
       </p>
     </div>
   </div>
+  <hr>
+  <p>{{ data | json}}</p>
 </div>
 <div mat-dialog-actions>
   <button mat-button [mat-dialog-close]="true" cdkFocusInitial>close</button>
