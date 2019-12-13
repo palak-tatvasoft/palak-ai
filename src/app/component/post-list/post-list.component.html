@@ -1,5 +1,8 @@
 <div style="text-align:center">
   <h1>Post List</h1>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <!-- title Column -->
@@ -10,7 +13,7 @@
 
     <!-- url Column -->
     <ng-container matColumnDef="url">
-      <th mat-header-cell *matHeaderCellDef> Url </th>
+      <th mat-header-cell *matHeaderCellDef> URL </th>
       <td mat-cell *matCellDef="let element"> {{element.url}} </td>
     </ng-container>
 
