@@ -2,6 +2,15 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.1.
 
+## Development Environment 
+
+This project required Node.js version 8.x or greater and npm version 5.x or greater 
+
+Clone the project using below command:
+` git clone https://github.com/palak-tatvasoft/palak-ai.git`
+` cd palak-ai`
+`npm install`
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
